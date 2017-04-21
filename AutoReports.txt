@@ -1,0 +1,77 @@
+Private WithEvents olRemind As Outlook.Reminders
+Dim strSubject As String
+
+Private Sub Application_Reminder(ByVal Item As Object)
+    Dim objMsg As MailItem
+    Dim fso As Object 'Scripting.FileSystemObject
+    Dim strFile As String
+    Dim fsoFile 'As Scripting.File
+    Dim fsoFldr 'As Scripting.Folder
+    Dim dtNew As Date, sNew As String
+    Dim strTo As String
+    Dim strBody As String
+    
+    Set olRemind = Outlook.Reminders
+    
+    'Check to make sure code doesn't run unless the reminder is in the Reports category
+    If Item.Categories <> "Reports" Then
+        Exit Sub
+    End If
+    
+    strSubject = Item.Subject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    Select Case strSubject
+        Case "No Notes in 3 Weeks"
+            strFile = "E:\Information Technologies\Reports\Misc\No Notes Since\"
+            'strTo = "allusers@kylawoffice.com"
+            strBody = "Please see the attached list of cases with no notes in the last three weeks.  Thanks!  Nathaniel"
+        Case "Pending Intro Calls"
+            strFile = "E:\Information Technologies\Reports\Misc\Pending Intro Call\"
+            'strTo = "casemanagers@kylawoffice.com"
+            strBody = "Please see the attached list of cases with pending intro calls.  Thanks!  Nathaniel"
+        Case Else
+            Exit Sub
+    End Select
+    
+    Set fsoFldr = fso.GetFolder(strFile)
+    dtNew = Now - 0.675
+    
+    For Each fsoFile In fsoFldr.Files
+    
+        'if date created is less than 1.5 hours ago
+        'can use .DateLastModified
+        If fsoFile.DateCreated > dtNew Then
+            sNew = fsoFile.Path
+            
+            Set objMsg = Application.CreateItem(olMailItem)
+            
+                With objMsg
+                    .To = "hatfield@kylawoffice.com"
+                    .BCC = "hatfield@kylawoffice.com"
+                    .Subject = Item.Subject
+                    .BodyFormat = olFormatPlain
+                    .Body = strBody
+                    .Attachments.Add sNew
+                    .Send
+                End With
+        End If
+    Next fsoFile
+    
+    Set objMsg = Nothing
+        
+End Sub
+
+Private Sub olRemind_BeforeReminderShow(Cancel As Boolean)
+
+    For Each objRem In olRemind
+        If objRem.Caption = strSubject Then
+            If objRem.IsVisible Then
+                objRem.Dismiss
+                Cancel = True
+            End If
+            Exit For
+        End If
+    Next objRem
+            
+End Sub
