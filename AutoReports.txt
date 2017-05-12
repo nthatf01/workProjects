@@ -42,6 +42,11 @@ Private Sub Application_Reminder(ByVal Item As Object)
             strTo = "demetria@kylawoffice.com; latosia@kylawoffice.com; chymez@kylawoffice.com"
             strCC = "casemanagers@kylawoffice.com; attorneys@kylawoffice.com; brandon@kylawoffice.com"
             strBody = "Please see the attached list of cases that still need their BI claim set up.  If you are having trouble getting a police report, please reach out to Brandon and his team.  Thanks!  Nathaniel"
+        Case "Waiting Aging"
+            strFile = "E:\Information Technologies\Reports\Misc\Waiting Aging\"
+            strTo = "lairy@kylawoffice.com; latosia@kylawoffice.com; kim@kylawoffice.com"
+            strCC = "casemanagers@kylawoffice.com; attorneys@kylawoffice.com; david@kylawoffice.com"
+            strBody = "Please see the attached list of cases in 2WA.  Remember, our goal is to move cases into demand within two weeks of the client being released from treatment.  Thanks! Nathaniel"
         Case Else
             Exit Sub
     End Select
