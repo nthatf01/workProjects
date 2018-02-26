@@ -24,29 +24,50 @@ Private Sub Application_Reminder(ByVal Item As Object)
     
     Select Case strSubject
         Case "No Notes in 3 Weeks"
-            strFile = "E:\Information Technologies\Reports\Misc\No Notes Since\"
+            strFile = "C:\Information Technologies\Reports\Misc\No Notes Since\"
             strTo = "allusers@kylawoffice.com"
             strBody = "Please see the attached list of cases with no notes in the last three weeks.  Thanks!  Nathaniel"
+        Case "No Notes in 20 Days"
+            strFile = "C:\Information Technologies\Reports\Misc\No Notes Since (Early)\"
+            strTo = "casemanagers@kylawoffice.com"
+            strCC = "david@kylawoffice.com; hatfield@kylawoffice.com"
+            strBody = "Please see the attached list of cases with no notes in the last 20 days.  These will be on tomorrow's No Notes in 3 Weeks report so here's your chance to work on them pre-emptively.  Thanks!  Nathaniel"
         Case "Pending Intro Calls"
-            strFile = "E:\Information Technologies\Reports\Misc\Pending Intro Call\"
+            strFile = "C:\Information Technologies\Reports\Misc\Pending Intro Call\"
             strTo = "casemanagers@kylawoffice.com"
             strCC = "attorneys@kylawoffice.com; kyle@kylawoffice.com"
             strBody = "Please see the attached list of cases with pending intro calls.  Thanks!  Nathaniel"
         Case "4DP"
-            strFile = "E:\Information Technologies\Reports\Misc\4DP\"
+            strFile = "C:\Information Technologies\Reports\Misc\4DP\"
             strTo = "attorneys@kylawoffice.com"
             strCC = "casemanagers@kylawoffice.com; david@kylawoffice.com"
             strBody = "Please see the attached list of cases with pending demands to review and send out.  Thanks!  Nathaniel"
         Case "BI Claims to File"
-            strFile = "E:\Information Technologies\Reports\Misc\BI Claims to File\"
+            strFile = "C:\Information Technologies\Reports\Misc\BI Claims to File\"
             strTo = "demetria@kylawoffice.com; latosia@kylawoffice.com; chymez@kylawoffice.com"
             strCC = "casemanagers@kylawoffice.com; attorneys@kylawoffice.com; brandon@kylawoffice.com"
             strBody = "Please see the attached list of cases that still need their BI claim set up.  If you are having trouble getting a police report, please reach out to Brandon and his team.  Thanks!  Nathaniel"
         Case "Waiting Aging"
-            strFile = "E:\Information Technologies\Reports\Misc\Waiting Aging\"
+            strFile = "C:\Information Technologies\Reports\Misc\Waiting Aging\"
             strTo = "lairy@kylawoffice.com; latosia@kylawoffice.com; kim@kylawoffice.com"
             strCC = "casemanagers@kylawoffice.com; attorneys@kylawoffice.com; david@kylawoffice.com"
             strBody = "Please see the attached list of cases in 2WA.  Remember, our goal is to move cases into demand within two weeks of the client being released from treatment.  Thanks! Nathaniel"
+        Case "REF Cases"
+            strFile = "C:\Information Technologies\Reports\Misc\REF Out\"
+            strTo = "sam@kylawoffice.com"
+            strCC = "kyle@kylawoffice.com; paul@kylawoffice.com; david@kylawoffice.com; brandon@kylawoffice.com"
+            strBody = "Please see the attached list of referred cases.  Thanks! Nathaniel"
+        Case "0RF"
+            strFile = "C:\Information Technologies\Reports\Misc\Pending Referral\"
+            strTo = "sam@kylawoffice.com"
+            strCC = "kyle@kylawoffice.com; paul@kylawoffice.com; david@kylawoffice.com; brandon@kylawoffice.com"
+            strBody = "Please see the attached list of cases pending to be signed/declined by the referred to attorney.  Thanks! Nathaniel"
+        Case "No Tx Updates in 4 Weeks"
+            strFile = "C:\Information Technologies\Reports\Misc\No Tx Updates in 4 Weeks\"
+            strTo = "casemanagers@kylawoffice.com"
+            strCC = "attorneys@kylawoffice.com; admin@kylawoffice.com"
+            strBody = "Please see the attached list of clients in 1PI who have not had a treatment update in the last four weeks.  Thanks! Nathaniel"
+                
         Case Else
             Exit Sub
     End Select
@@ -78,18 +99,4 @@ Private Sub Application_Reminder(ByVal Item As Object)
     
     Set objMsg = Nothing
         
-End Sub
-
-Private Sub olRemind_BeforeReminderShow(Cancel As Boolean)
-
-    For Each objRem In olRemind
-        If objRem.Caption = strSubject Then
-            If objRem.IsVisible Then
-                objRem.Dismiss
-                Cancel = True
-            End If
-            Exit For
-        End If
-    Next objRem
-            
 End Sub
