@@ -77,7 +77,12 @@ Private Sub Application_Reminder(ByVal Item As Object)
             strTo = "attorneys@kylawoffice.com"
             strCC = "casemanagers@kylawoffice.com; admin@kylawoffice.com; brandon@kylawoffice.com"
             strBody = "Please see the attached list of cases with approaching statutes of limitation within the next four months, and let us know if everything's alright on them.  Thanks, Nathaniel"
-                
+        Case "Birthday Card Labels"
+            strFile = "C:\Information Technologies\Reports\Misc\Birthday Card Labels\"
+            strTo = "paul@kylawoffice.com"
+            strCC = "hatfield@kylawoffice.com"
+            strBody = "Here are the birthday card labels for this week.  Thanks! Nate"
+
         Case Else
             Exit Sub
     End Select
