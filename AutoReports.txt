@@ -82,7 +82,7 @@ Private Sub Application_Reminder(ByVal Item As Object)
             strTo = "paul@kylawoffice.com"
             strCC = "hatfield@kylawoffice.com"
             strBody = "Here are the birthday card labels for this week.  Thanks! Nate"
-
+                
         Case Else
             Exit Sub
     End Select
@@ -114,4 +114,18 @@ Private Sub Application_Reminder(ByVal Item As Object)
     
     Set objMsg = Nothing
         
+End Sub
+
+Private Sub olRemind_BeforeReminderShow(Cancel As Boolean)
+
+    For Each objRem In olRemind
+        If objRem.Caption = strSubject Then
+            If objRem.IsVisible Then
+                objRem.Dismiss
+                Cancel = True
+            End If
+            Exit For
+        End If
+    Next objRem
+
 End Sub
