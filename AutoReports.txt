@@ -63,7 +63,7 @@ Private Sub Application_Reminder(ByVal Item As Object)
             strCC = "kyle@kylawoffice.com; paul@kylawoffice.com; david@kylawoffice.com; brandon@kylawoffice.com"
             strBody = "Please see the attached list of cases pending to be signed/declined by the referred to attorney.  Thanks! Nathaniel"
         Case "No Tx Updates in 4 Weeks"
-            strFile = "C:\Information Technologies\Reports\Misc\No Tx Updates in 4 Weeks\"
+            strFile = "C:\Information Technologies\Reports\Misc\No Tx Update in 4 Weeks\"
             strTo = "casemanagers@kylawoffice.com"
             strCC = "attorneys@kylawoffice.com; admin@kylawoffice.com"
             strBody = "Please see the attached list of clients in 1PI who have not had a treatment update in the last four weeks.  Thanks! Nathaniel"
