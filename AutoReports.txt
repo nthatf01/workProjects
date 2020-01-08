@@ -82,6 +82,11 @@ Private Sub Application_Reminder(ByVal Item As Object)
             strTo = "paul@kylawoffice.com"
             strCC = "hatfield@kylawoffice.com"
             strBody = "Here are the birthday card labels for this week.  Thanks! Nate"
+        Case "Missing HBONUS"
+            strFile = "C:\Information Technologies\Reports\Misc\Missing HBONUS\"
+            strTo = "accounting@kylawoffice.com"
+            strCC = "kyle@kylawoffice.com; hatfield@kylawoffice.com"
+            strBody = "Here is the report of closed cases missing HBONUS items.  A blank report means there aren't any.  Thanks! Nathaniel"
                 
         Case Else
             Exit Sub
