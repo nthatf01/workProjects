@@ -1,0 +1,44 @@
+Sub ClosedCase30DayLetter_FinishMailMerge()
+'
+' ClosedCase30DayLetter_FinishMailMerge Macro
+'
+'
+    With ActiveDocument.MailMerge
+        .Destination = wdSendToNewDocument
+        .SuppressBlankLines = True
+        With .DataSource
+            .FirstRecord = wdDefaultFirstRecord
+            .LastRecord = wdDefaultLastRecord
+        End With
+        .Execute Pause:=False
+    End With
+    ChangeFileOpenDirectory _
+        "C:\Information Technologies\Reports\Misc\Closed Client Contact 30 Days\"
+    ActiveDocument.SaveAs2 FileName:="CCC 30 Days " & Format(Date, "mmddyy") & ".docx", FileFormat:= _
+        wdFormatXMLDocument, LockComments:=False, Password:="", AddToRecentFiles _
+        :=True, WritePassword:="", ReadOnlyRecommended:=False, EmbedTrueTypeFonts _
+        :=False, SaveNativePictureFormat:=False, SaveFormsData:=False, _
+        SaveAsAOCELetter:=False, CompatibilityMode:=15
+    ActiveWindow.Close
+    
+    Application.Quit SaveChanges:=wdDoNotSaveChanges
+End Sub
+Sub BirthdayEmails_Send()
+'
+' BirthdayEmails_Send Macro
+'
+'
+    With ActiveDocument.MailMerge
+        .Destination = wdSendToEmail
+        .SuppressBlankLines = True
+        With .DataSource
+            .FirstRecord = wdDefaultFirstRecord
+            .LastRecord = wdDefaultLastRecord
+        End With
+        .Execute Pause:=False
+    End With
+    ActiveWindow.Close
+    
+    Application.Quit SaveChanges:=wdDoNotSaveChanges
+
+End Sub
