@@ -1,0 +1,30 @@
+import os
+import shutil
+import time
+
+cwd = os.getcwd()
+print(cwd)
+copies_dir = "W:/zzz - Claim Forms/1L3/"
+number_of_claim_forms = 1
+
+with open("1L3 File Paths.csv") as file:
+    for line in file:
+        client_folder = line.strip()
+        client_folder = client_folder.strip('"')
+        client_folder = client_folder[3:]
+        #print(client_folder)
+        os.chdir(client_folder)
+        cwd = os.getcwd()
+        print(cwd)
+        with os.scandir(cwd) as entries:
+            for entry in entries:
+                if entry.is_file() and entry.name.endswith("Claim Form.pdf"):
+                    print(entry.name)
+                    shutil.copy2(entry, copies_dir)
+                    new_copy = os.path.join(copies_dir, entry.name)
+                    new_copy_name = os.path.join(copies_dir, str(number_of_claim_forms)+".pdf")
+                    os.rename(new_copy, new_copy_name)
+                    #time.sleep(5)
+                    number_of_claim_forms = number_of_claim_forms +1
+                    print(number_of_claim_forms)
+        os.chdir("..")
